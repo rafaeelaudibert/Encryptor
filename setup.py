@@ -1,4 +1,5 @@
 import io
+import os
 
 from setuptools import find_packages
 from setuptools import setup
@@ -8,7 +9,7 @@ with io.open("README.md", "rt", encoding="utf8") as f:
 
 setup(
     name="encryptor",
-    version="0.0.1",
+    version=os.environ['PACKAGE_VERSION'],
     url="https://rafaeelaudibert/encryptor.py",
     maintainer="Rafa Audibert",
     maintainer_email="rafaeelaudibert@gmail.com",
