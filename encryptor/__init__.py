@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask, jsonify
+import werkzeug
 
 
 def create_app(test_config=None):
@@ -26,8 +27,16 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    # ROUTES
     @app.route("/api/")
     def hello():
         return jsonify({'content': 'Hello World!'})
+
+    # ERROR HANDLERS
+    def handle_errors(e):
+        return jsonify(
+            {'status': e.code, 'error': e.name, 'description': e.description})
+    app.register_error_handler(400, handle_errors)
+    app.register_error_handler(500, handle_errors)
 
     return app
