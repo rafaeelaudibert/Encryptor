@@ -2,6 +2,18 @@ import os
 
 from flask import Flask, jsonify
 import werkzeug
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
+
+from dotenv import load_dotenv
+load_dotenv()
+
+sentry_sdk.init(
+    dsn=os.environ['SENTRY_DSN'] or os.getenv('SENTRY_DSN'),
+    release="encryptor@{}".format(
+        os.environ['PACKAGE_VERSION'] or os.getenv('PACKAGE_VERSION')),
+    integrations=[FlaskIntegration()]
+)
 
 
 def create_app(test_config=None):
@@ -31,6 +43,12 @@ def create_app(test_config=None):
     @app.route("/api/")
     def hello():
         return jsonify({'content': 'Hello World!'})
+
+    @app.route('/api/error')
+    def trigger_error():
+        raise OSError
+        division_by_zero = 1 / 0
+        return jsonify({'content': 'Hello World with error!'})
 
     # ERROR HANDLERS
     def handle_errors(e):
