@@ -46,9 +46,7 @@ def create_app(test_config=None):
 
     @app.route('/api/error')
     def trigger_error():
-        raise OSError
-        division_by_zero = 1 / 0
-        return jsonify({'content': 'Hello World with error!'})
+        return jsonify({'status': 200, 'content': '1 / 0 = {}'.format(1 / 0)})
 
     # ERROR HANDLERS
     def handle_errors(e):
