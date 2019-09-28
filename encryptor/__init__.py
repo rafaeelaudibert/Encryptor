@@ -1,13 +1,21 @@
+# Import encryptors
+from encryptor.encryptors import *
+
+# Core imports
 import os
 
+# Third-party imports
 from flask import Flask, jsonify
 import werkzeug
 import sentry_sdk
 from sentry_sdk.integrations.flask import FlaskIntegration
 
+# Dotenv
 from dotenv import load_dotenv
 load_dotenv()
 
+
+# Sentry initialization
 sentry_sdk.init(
     dsn=os.environ['SENTRY_DSN'] or os.getenv('SENTRY_DSN'),
     release="encryptor@{}".format(
@@ -40,9 +48,13 @@ def create_app(test_config=None):
         pass
 
     # ROUTES
-    @app.route("/api/")
-    def hello():
-        return jsonify({'content': 'Hello World!'})
+    @app.route("/api/ceasar/encrypt/<text>/<int:offset>")
+    def ceasar_encrypt(text, offset):
+        return jsonify({'status': 200, 'content': Ceasar.encrypt(text, offset)})
+
+    @app.route("/api/ceasar/decrypt/<text>/<int:offset>")
+    def ceasar_decrypt(text, offset):
+        return jsonify({'status': 200, 'content': Ceasar.decrypt(text, offset)})
 
     @app.route('/api/error')
     def trigger_error():
