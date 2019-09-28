@@ -15,3 +15,7 @@ Little toy project to showcase Python, Flask, Sentry and Travis CI for INF01127 
 You can try out each encryptor in their respective route based in the following model: `localhost:5000/api/:encryptor/{encrypt|decrypt}/:text/...other_options`, where you can see the required options in each route at the source file. Example to encrypt the text github with an offset of 4, using a Ceasar cypher: `localhost:5000/api/ceasar/encrypt/github/4`.
 
 There is an open route which triggers an error which can be received by sentry at `localhost:5000/api/error`
+
+## Tests
+
+You can run the tests with `pytests`
