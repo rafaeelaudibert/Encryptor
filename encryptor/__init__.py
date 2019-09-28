@@ -51,7 +51,7 @@ def create_app(test_config=None):
     # ERROR HANDLERS
     def handle_errors(e):
         return jsonify(
-            {'status': e.code, 'error': e.name, 'description': e.description})
+            {'status': e.code, 'error': e.name, 'content': e.description})
     app.register_error_handler(400, handle_errors)
     app.register_error_handler(500, handle_errors)
 
