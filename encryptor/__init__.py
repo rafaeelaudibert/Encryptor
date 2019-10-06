@@ -8,7 +8,7 @@ from flask import jsonify
 from flask import request
 from sentry_sdk.integrations.flask import FlaskIntegration
 
-from encryptor.encryptors import *
+from .encryptors import *
 
 # Configure dotenv
 load_dotenv()
@@ -64,6 +64,24 @@ def create_app(test_config=None):
         return jsonify({
             "status": 200,
             "content": Ceasar.decrypt(text, offset)
+        })
+
+    @app.route("/api/vigenere/encrypt/<text>")
+    def vigenere_encrypt(text):
+        offset = request.args.get("tabula_recta", Vigenere.ALPHABET)
+
+        return jsonify({
+            "status": 200,
+            "content": Vigenere.encrypt(text, offset)
+        })
+
+    @app.route("/api/vigenere/decrypt/<text>")
+    def vigenere_decrypt(text):
+        offset = request.args.get("tabula_recta", Vigenere.ALPHABET)
+
+        return jsonify({
+            "status": 200,
+            "content": Vigenere.decrypt(text, offset)
         })
 
     @app.route("/api/error")
