@@ -27,3 +27,6 @@ When creating a new encryptor, try follow this rules:
   they should start with an underline, following Python convention.
 - You should expose both methods in routes in the
   [routes file](./encryptor/__init__.py)
+- If you need to pass some extra parameters besides the text (which is mostly)
+  true, you should pass it as query parameters just as in
+  `/api/ceasar/encrypt/github?offset=4`
