@@ -14,6 +14,8 @@ the well-being of the project.
   `/api/{encryptor_name}/{encrypt/decrypt}`.
 - Make sure all the tests always pass before creating the PR, as Travis CI will
   check it.
+- We use [Gitmoji](https://gitmoji.carloscuesta.me/) in our commit messages,
+  so make sure to follow their convention.
 
 ## Encryptor Pattern
 
