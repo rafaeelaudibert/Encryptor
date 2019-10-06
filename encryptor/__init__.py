@@ -18,7 +18,8 @@ if os.environ["SENTRY_DSN"] or os.getenv("SENTRY_DSN"):
     sentry_sdk.init(
         dsn=os.environ["SENTRY_DSN"] or os.getenv("SENTRY_DSN"),
         release="encryptor@{}".format(os.environ["PACKAGE_VERSION"]
-                                      or os.getenv("PACKAGE_VERSION")) or "0.0.0",
+                                      or os.getenv("PACKAGE_VERSION"))
+        or "0.0.0",
         integrations=[FlaskIntegration()],
     )
 

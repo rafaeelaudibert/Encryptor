@@ -1,6 +1,7 @@
 # :lock: :key: Encryptor
 
-Several encryptors (cryptographic secure or not) available in a REST API fashion, using Flask
+Several encryptors (cryptographic secure or not) available in a REST API
+fashion, using Flask
 
 ## :computer: Running
 
@@ -19,8 +20,8 @@ Several encryptors (cryptographic secure or not) available in a REST API fashion
 You can try out each encryptor in their respective route based in the following
 model:
 `localhost:5000/api/:encryptor/{encrypt|decrypt}/:text?option_1=x&option_2=y`,
-where you can see the required options in each route at the source file.
-Example to encrypt the text github with an offset of 4, using a `Ceasar` cypher:
+where you can see the required options in each route at the source file. Example
+to encrypt the text github with an offset of 4, using a `Ceasar` cypher:
 `localhost:5000/api/ceasar/encrypt/github?offset=4`.
 
 ## :white_check_mark: Tests
@@ -29,8 +30,9 @@ You can test this application running the `pytest` command
 
 ## :muscle: Contributing
 
-You may check [CONTRIBUTING.md](./CONTRIBUTING.md) if you want to contribute to the project!
-I would highly reccommend you to do so, as we are trying to build something really nice and beginner friendly.
+You may check [CONTRIBUTING.md](./CONTRIBUTING.md) if you want to contribute to
+the project! I would highly reccommend you to do so, as we are trying to build
+something really nice and beginner friendly.
 
 ## :busts_in_silhouette: Contributors
 
