@@ -1,4 +1,4 @@
-from ..errors.wrong_type_parameter import WrongTypeParameter
+from ..errors.not_allowed_value import NotAllowedValue
 from itertools import cycle
 
 
@@ -20,7 +20,7 @@ class Vigenere:
             encrypt_message = [(value[0] + value[1]) % len(Vigenere.ALPHABET) for value in compare.values()]
             return ''.join(Vigenere._decode(encrypt_message))
         else:
-            raise WrongTypeParameter("key", str, type(key))
+            raise NotAllowedValue
 
     @staticmethod
     def decrypt(text: str, key: str = KEY, tabula_recta=None):
@@ -33,7 +33,7 @@ class Vigenere:
             decrypt_message = [(value[0] - value[1]) % len(Vigenere.ALPHABET) for value in compare.values()]
             return ''.join(Vigenere._decode(decrypt_message))
         else:
-            raise WrongTypeParameter("key", str, type(key))
+            raise NotAllowedValue
 
     @staticmethod
     def _encode(word: str):
