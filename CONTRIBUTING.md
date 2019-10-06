@@ -14,6 +14,8 @@ the well-being of the project.
   `/api/{encryptor_name}/{encrypt/decrypt}`.
 - Make sure all the tests always pass before creating the PR, as Travis CI will
   check it.
+- We use [Gitmoji](https://gitmoji.carloscuesta.me/) in our commit messages,
+  so make sure to follow their convention.
 
 ## Encryptor Pattern
 
@@ -25,3 +27,6 @@ When creating a new encryptor, try follow this rules:
   they should start with an underline, following Python convention.
 - You should expose both methods in routes in the
   [routes file](./encryptor/__init__.py)
+- If you need to pass some extra parameters besides the text (which is mostly)
+  true, you should pass it as query parameters just as in
+  `/api/ceasar/encrypt/github?offset=4`
