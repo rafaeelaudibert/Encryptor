@@ -1,4 +1,5 @@
 import pytest
+
 from encryptor.encryptors import Ceasar
 from encryptor.errors import *
 
