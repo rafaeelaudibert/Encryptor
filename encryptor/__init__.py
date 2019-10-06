@@ -14,12 +14,12 @@ from encryptor.encryptors import *
 load_dotenv()
 
 # Sentry initialization, if possible
-if os.environ["SENTRY_DSN"] or os.getenv("SENTRY_DSN"):
+if os.environ.get("SENTRY_DSN", None) or os.getenv("SENTRY_DSN"):
     sentry_sdk.init(
-        dsn=os.environ["SENTRY_DSN"] or os.getenv("SENTRY_DSN"),
-        release="encryptor@{}".format(os.environ["PACKAGE_VERSION"]
+        dsn=os.environ.get("SENTRY_DSN", None) or os.getenv("SENTRY_DSN"),
+        release="encryptor@{}".format(os.environ.get("PACKAGE_VERSION", None)
                                       or os.getenv("PACKAGE_VERSION"))
-        or "0.0.0",
+        or "encryptor@no_version",
         integrations=[FlaskIntegration()],
     )
 
