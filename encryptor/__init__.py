@@ -66,6 +66,24 @@ def create_app(test_config=None):
             "content": Ceasar.decrypt(text, offset)
         })
 
+    @app.route("/api/railfence/encrypt/<text>")
+    def railfence_encrypt(text):
+        rail_height = request.args.get("rail_height", RailFence.DEFAULT_RAILS)
+
+        return jsonify({
+            "status": 200,
+            "content": RailFence.encrypt(text, rail_height)
+        })
+
+    @app.route("/api/railfence/decrypt/<text>")
+    def railfence_decrypt(text):
+        rail_height = request.args.get("rail_height", RailFence.DEFAULT_RAILS)
+
+        return jsonify({
+            "status": 200,
+            "content": RailFence.decrypt(text, rail_height)
+        })
+
     @app.route("/api/error")
     def trigger_error():
         return jsonify({"status": 200, "content": "1 / 0 = {}".format(1 / 0)})
