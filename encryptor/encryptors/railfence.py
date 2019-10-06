@@ -17,7 +17,7 @@ class RailFence:
 
         #to make railfence work as in most examples we must first clear the
         #text of all extra stuff (special characters, etc)
-        text = ''.join([c if c.isalnum() or c == ' ' for c in text])
+        text = ''.join([c for c in text if c.isalnum() or c == ' ' ])
 
         # edge case handling
         if rail_height == 1:
