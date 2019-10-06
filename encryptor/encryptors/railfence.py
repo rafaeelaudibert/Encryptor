@@ -14,16 +14,10 @@ class RailFence:
             rail_height = int(rail_height)
         except ValueError:
             raise WrongTypeParameter("rail_height", int, type(rail_height))
-        """
-        to make railfence work as in most examples we must first clear the
-        text of all extra stuff (special characters, etc)
-        """
 
-        new_text = []
-        for c in text:
-            if c.isalnum() or c == ' ':
-                new_text.append(c)
-        text = ''.join(new_text)
+        #to make railfence work as in most examples we must first clear the
+        #text of all extra stuff (special characters, etc)
+        text = ''.join([c if c.isalnum() or c == ' ' for c in text])
 
         # edge case handling
         if rail_height == 1:
