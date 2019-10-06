@@ -5,7 +5,7 @@ from encryptor.encryptors import *
 import os
 
 # Third-party imports
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import werkzeug
 import sentry_sdk
 from sentry_sdk.integrations.flask import FlaskIntegration
@@ -48,12 +48,16 @@ def create_app(test_config=None):
         pass
 
     # ROUTES
-    @app.route("/api/ceasar/encrypt/<text>/<int:offset>")
-    def ceasar_encrypt(text, offset):
+    @app.route("/api/ceasar/encrypt/<text>")
+    def ceasar_encrypt(text):
+        offset = request.args.get('offset', Ceasar.DEFAULT_OFFSET)
+
         return jsonify({'status': 200, 'content': Ceasar.encrypt(text, offset)})
 
-    @app.route("/api/ceasar/decrypt/<text>/<int:offset>")
-    def ceasar_decrypt(text, offset):
+    @app.route("/api/ceasar/decrypt/<text>")
+    def ceasar_decrypt(text):
+        offset = request.args.get('offset', Ceasar.DEFAULT_OFFSET)
+
         return jsonify({'status': 200, 'content': Ceasar.decrypt(text, offset)})
 
     @app.route('/api/error')

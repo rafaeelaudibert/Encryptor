@@ -14,6 +14,13 @@ def test_encrypt_letter():
     assert Ceasar.encrypt_letter('X', 2) == 'Z'
 
 
+def test_encrypt_letter_no_offset():
+    '''
+    Test basic encrypt letters function omitting `offset` parameter
+    '''
+    assert Ceasar.encrypt_letter('r') == 'r'
+
+
 def test_decrypt_letter():
     '''
     Test basic decrypt letters function with lower and upper case letters
@@ -23,6 +30,13 @@ def test_decrypt_letter():
     assert Ceasar.decrypt_letter('z', 2) == 'x'
     assert Ceasar.decrypt_letter('O', 5) == 'J'
     assert Ceasar.decrypt_letter('Z', 2) == 'X'
+
+
+def test_decrypt_letter_no_offset():
+    '''
+    Test basic decrypt letters function omitting `offset` parameter
+    '''
+    assert Ceasar.decrypt_letter('r') == 'r'
 
 
 def test_encrypt_letter_wrap():
@@ -83,6 +97,13 @@ def test_encrypt():
     assert Ceasar.encrypt('XYZA', 2) == 'ZABC'
 
 
+def test_encrypt_no_offset():
+    '''
+    Test basic encrypt text function, omitting `offset` parameter
+    '''
+    assert Ceasar.encrypt('abdef') == 'abdef'
+
+
 def test_decrypt():
     '''
     Test basic decrypt text function, with lower and upper case characters
@@ -91,6 +112,13 @@ def test_decrypt():
     assert Ceasar.decrypt('opqrstu', 5) == 'jklmnop'
     assert Ceasar.decrypt('zabc', 2) == 'xyza'
     assert Ceasar.decrypt('ZABC', 2) == 'XYZA'
+
+
+def test_decrypt_no_offset():
+    '''
+    Test basic decrypt text function, omitting `offset` parameter
+    '''
+    assert Ceasar.decrypt('abdef') == 'abdef'
 
 
 def test_encrypt_non_character():
