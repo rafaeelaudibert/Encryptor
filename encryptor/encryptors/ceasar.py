@@ -15,7 +15,7 @@ class Ceasar:
         except ValueError:
             raise WrongTypeParameter("offset", int, type(offset))
 
-        return "".join([Ceasar.encrypt_letter(char, offset) for char in text])
+        return "".join([Ceasar._encrypt_letter(char, offset) for char in text])
 
     @staticmethod
     def decrypt(text: str, offset: int = DEFAULT_OFFSET):
@@ -24,10 +24,10 @@ class Ceasar:
         except ValueError:
             raise WrongTypeParameter("offset", int, type(offset))
 
-        return "".join([Ceasar.decrypt_letter(char, offset) for char in text])
+        return "".join([Ceasar._decrypt_letter(char, offset) for char in text])
 
     @staticmethod
-    def encrypt_letter(char: str, offset: int = DEFAULT_OFFSET):
+    def _encrypt_letter(char: str, offset: int = DEFAULT_OFFSET):
         # Encrypt uppercase characters in plain text
         if char.isupper():
             return chr((ord(char) + offset - Ceasar.UPPERCASE_OFFSET) %
@@ -40,7 +40,7 @@ class Ceasar:
             raise NotAllowedValue
 
     @staticmethod
-    def decrypt_letter(char: str, offset: int = DEFAULT_OFFSET):
+    def _decrypt_letter(char: str, offset: int = DEFAULT_OFFSET):
         # Decrypt uppercase characters in plain text
         if char.isupper():
             return chr((ord(char) - offset - Ceasar.UPPERCASE_OFFSET) %
