@@ -46,4 +46,3 @@ class Vigenere:
     @staticmethod
     def _comparator(message: list, key: list):
         return dict([(i, [char[0], char[1]]) for i, char in enumerate(zip(message, cycle(key)))])
-
