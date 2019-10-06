@@ -1,4 +1,3 @@
-# Import core
 import os
 
 import sentry_sdk
@@ -10,8 +9,6 @@ from flask import request
 from sentry_sdk.integrations.flask import FlaskIntegration
 
 from encryptor.encryptors import *
-# Import third-party
-# Encryptors
 
 # Configure dotenv
 load_dotenv()
