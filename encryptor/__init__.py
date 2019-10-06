@@ -1,26 +1,27 @@
-# Import encryptors
-from encryptor.encryptors import *
-
-# Core imports
+# Import core
 import os
 
-# Third-party imports
-from flask import Flask, jsonify, request
-import werkzeug
+# Import third-party
 import sentry_sdk
+import werkzeug
+from dotenv import load_dotenv
+from flask import Flask
+from flask import jsonify
+from flask import request
 from sentry_sdk.integrations.flask import FlaskIntegration
 
-# Dotenv
-from dotenv import load_dotenv
-load_dotenv()
+# Encryptors
+from encryptor.encryptors import *
 
+# Configure dotenv
+load_dotenv()
 
 # Sentry initialization
 sentry_sdk.init(
-    dsn=os.environ['SENTRY_DSN'] or os.getenv('SENTRY_DSN'),
-    release="encryptor@{}".format(
-        os.environ['PACKAGE_VERSION'] or os.getenv('PACKAGE_VERSION')) or '0.0.0',
-    integrations=[FlaskIntegration()]
+    dsn=os.environ["SENTRY_DSN"] or os.getenv("SENTRY_DSN"),
+    release="encryptor@{}".format(os.environ["PACKAGE_VERSION"]
+                                  or os.getenv("PACKAGE_VERSION")) or "0.0.0",
+    integrations=[FlaskIntegration()],
 )
 
 
@@ -50,24 +51,34 @@ def create_app(test_config=None):
     # ROUTES
     @app.route("/api/ceasar/encrypt/<text>")
     def ceasar_encrypt(text):
-        offset = request.args.get('offset', Ceasar.DEFAULT_OFFSET)
+        offset = request.args.get("offset", Ceasar.DEFAULT_OFFSET)
 
-        return jsonify({'status': 200, 'content': Ceasar.encrypt(text, offset)})
+        return jsonify({
+            "status": 200,
+            "content": Ceasar.encrypt(text, offset)
+        })
 
     @app.route("/api/ceasar/decrypt/<text>")
     def ceasar_decrypt(text):
-        offset = request.args.get('offset', Ceasar.DEFAULT_OFFSET)
+        offset = request.args.get("offset", Ceasar.DEFAULT_OFFSET)
 
-        return jsonify({'status': 200, 'content': Ceasar.decrypt(text, offset)})
+        return jsonify({
+            "status": 200,
+            "content": Ceasar.decrypt(text, offset)
+        })
 
-    @app.route('/api/error')
+    @app.route("/api/error")
     def trigger_error():
-        return jsonify({'status': 200, 'content': '1 / 0 = {}'.format(1 / 0)})
+        return jsonify({"status": 200, "content": "1 / 0 = {}".format(1 / 0)})
 
     # ERROR HANDLERS
     def handle_errors(e):
-        return jsonify(
-            {'status': e.code, 'error': e.name, 'content': e.description})
+        return jsonify({
+            "status": e.code,
+            "error": e.name,
+            "content": e.description
+        })
+
     app.register_error_handler(400, handle_errors)
     app.register_error_handler(500, handle_errors)
 
