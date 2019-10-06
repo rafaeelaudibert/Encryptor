@@ -69,19 +69,21 @@ def create_app(test_config=None):
     @app.route("/api/vigenere/encrypt/<text>")
     def vigenere_encrypt(text):
         tabula_recta = request.args.get("tabula_recta", Vigenere.ALPHABET)
+        key = request.args.get("key", Vigenere.KEY)
 
         return jsonify({
             "status": 200,
-            "content": Vigenere.encrypt(text, tabula_recta)
+            "content": Vigenere.encrypt(text, key, tabula_recta)
         })
 
     @app.route("/api/vigenere/decrypt/<text>")
     def vigenere_decrypt(text):
         tabula_recta = request.args.get("tabula_recta", Vigenere.ALPHABET)
+        key = request.args.get("key", Vigenere.KEY)
 
         return jsonify({
             "status": 200,
-            "content": Vigenere.decrypt(text, tabula_recta)
+            "content": Vigenere.decrypt(text, key, tabula_recta)
         })
 
     @app.route("/api/error")
