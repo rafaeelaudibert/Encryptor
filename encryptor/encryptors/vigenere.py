@@ -1,5 +1,3 @@
-from ..errors.not_allowed_value import NotAllowedValue
-from ..errors.wrong_type_parameter import WrongTypeParameter
 from itertools import cycle
 
 
@@ -40,5 +38,3 @@ class Vigenere:
     @staticmethod
     def _comparator(message: list, key: list):
         return dict([(i, [char[0], char[1]]) for i, char in enumerate(zip(message, cycle(key)))])
-
-
