@@ -30,12 +30,16 @@ class Ceasar:
     def _encrypt_letter(char: str, offset: int = DEFAULT_OFFSET):
         # Encrypt uppercase characters in plain text
         if char.isupper():
-            return chr((ord(char) + offset - Ceasar.UPPERCASE_OFFSET) %
-                       Ceasar.ALPHABET_LENGTH + Ceasar.UPPERCASE_OFFSET)
+            return chr(
+                (ord(char) + offset - Ceasar.UPPERCASE_OFFSET) % Ceasar.ALPHABET_LENGTH
+                + Ceasar.UPPERCASE_OFFSET
+            )
         # Encrypt lowercase characters in plain text
         elif char.islower():
-            return chr((ord(char) + offset - Ceasar.LOWERCASE_OFFSET) %
-                       Ceasar.ALPHABET_LENGTH + Ceasar.LOWERCASE_OFFSET)
+            return chr(
+                (ord(char) + offset - Ceasar.LOWERCASE_OFFSET) % Ceasar.ALPHABET_LENGTH
+                + Ceasar.LOWERCASE_OFFSET
+            )
         else:
             raise NotAllowedValue
 
@@ -43,11 +47,15 @@ class Ceasar:
     def _decrypt_letter(char: str, offset: int = DEFAULT_OFFSET):
         # Decrypt uppercase characters in plain text
         if char.isupper():
-            return chr((ord(char) - offset - Ceasar.UPPERCASE_OFFSET) %
-                       Ceasar.ALPHABET_LENGTH + Ceasar.UPPERCASE_OFFSET)
+            return chr(
+                (ord(char) - offset - Ceasar.UPPERCASE_OFFSET) % Ceasar.ALPHABET_LENGTH
+                + Ceasar.UPPERCASE_OFFSET
+            )
         # Decrypt lowercase characters in plain text
         elif char.islower():
-            return chr((ord(char) - offset - Ceasar.LOWERCASE_OFFSET) %
-                       Ceasar.ALPHABET_LENGTH + Ceasar.LOWERCASE_OFFSET)
+            return chr(
+                (ord(char) - offset - Ceasar.LOWERCASE_OFFSET) % Ceasar.ALPHABET_LENGTH
+                + Ceasar.LOWERCASE_OFFSET
+            )
         else:
             raise NotAllowedValue
