@@ -25,4 +25,9 @@ def test_decrypt():
     assert RailFence.decrypt("I",1) == "I"
     assert RailFence.decrypt("IM",1) == "IM"
 
+def test_encrypt_without_rail_height():
+    assert RailFence.encrypt("Railfence") == "Rfealecin"
+
+def test_decrypt_without_rail_height():
+    assert RailFence.decrypt("Rfealecin") == "Railfence"
 
