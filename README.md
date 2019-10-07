@@ -28,6 +28,14 @@ to encrypt the text github with an offset of 4, using a `Ceasar` cypher:
 
 You can test this application running the `pytest` command
 
+
+## Encryptor Logo 
+![Encryptor Logo](/assets/logo.png)
+![Encryptor Logo Grey](/assets/logo_grey.png)
+![Encryptor Logo BW](/assets/logo_bw.png)
+
+
+
 ## :muscle: Contributing
 
 You may check [CONTRIBUTING.md](./CONTRIBUTING.md) if you want to contribute to
