@@ -85,6 +85,7 @@ def create_app(test_config=None):
         return jsonify({
             "status": 200,
             "content": Vigenere.decrypt(text, key, tabula_recta)
+        })
 
     @app.route("/api/railfence/encrypt/<text>")
     def railfence_encrypt(text):

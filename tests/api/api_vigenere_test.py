@@ -22,9 +22,9 @@ def test_vigenere_decrypt_api(client):
 
 
 def test_vigenere_decrypt_api_no_key(client):
-    response = client.get("/api/vigenere/decrypt/encryptthis").get_json()
+    response = client.get("/api/vigenere/decrypt/EGUSZRfUIKe").get_json()
     assert response["status"] == 200
-    assert response["content"] == "EGUSZRfUIKe"
+    assert response["content"] == "decryptthis"
 
 
 def test_vigenere_encrypt_invalid_key(client):
