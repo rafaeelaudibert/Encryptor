@@ -1,4 +1,5 @@
 # :lock: :key: Encryptor
+![Encryptor Logo](/assets/logo.png)
 
 Several encryptors (cryptographic secure or not) available in a REST API
 fashion, using Flask
@@ -27,14 +28,6 @@ to encrypt the text github with an offset of 4, using a `Ceasar` cypher:
 ## :white_check_mark: Tests
 
 You can test this application running the `pytest` command
-
-
-## Encryptor Logo 
-![Encryptor Logo](/assets/logo.png)
-![Encryptor Logo Grey](/assets/logo_grey.png)
-![Encryptor Logo BW](/assets/logo_bw.png)
-
-
 
 ## :muscle: Contributing
 
