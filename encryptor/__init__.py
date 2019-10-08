@@ -14,12 +14,12 @@ from .encryptors import *
 load_dotenv()
 
 # Sentry initialization, if possible
-if os.environ["SENTRY_DSN"] or os.getenv("SENTRY_DSN"):
+if os.environ.get("SENTRY_DSN", None) or os.getenv("SENTRY_DSN"):
     sentry_sdk.init(
-        dsn=os.environ["SENTRY_DSN"] or os.getenv("SENTRY_DSN"),
-        release="encryptor@{}".format(os.environ["PACKAGE_VERSION"]
+        dsn=os.environ.get("SENTRY_DSN", None) or os.getenv("SENTRY_DSN"),
+        release="encryptor@{}".format(os.environ.get("PACKAGE_VERSION", None)
                                       or os.getenv("PACKAGE_VERSION"))
-        or "0.0.0",
+        or "encryptor@no_version",
         integrations=[FlaskIntegration()],
     )
 
@@ -66,6 +66,7 @@ def create_app(test_config=None):
             "content": Ceasar.decrypt(text, offset)
         })
 
+
     @app.route("/api/vigenere/encrypt/<text>")
     def vigenere_encrypt(text):
         tabula_recta = request.args.get("tabula_recta", Vigenere.ALPHABET)
@@ -84,6 +85,23 @@ def create_app(test_config=None):
         return jsonify({
             "status": 200,
             "content": Vigenere.decrypt(text, key, tabula_recta)
+
+    @app.route("/api/railfence/encrypt/<text>")
+    def railfence_encrypt(text):
+        rail_height = request.args.get("rail_height", RailFence.DEFAULT_RAILS)
+
+        return jsonify({
+            "status": 200,
+            "content": RailFence.encrypt(text, rail_height)
+        })
+
+    @app.route("/api/railfence/decrypt/<text>")
+    def railfence_decrypt(text):
+        rail_height = request.args.get("rail_height", RailFence.DEFAULT_RAILS)
+
+        return jsonify({
+            "status": 200,
+            "content": RailFence.decrypt(text, rail_height)
         })
 
     @app.route("/api/error")

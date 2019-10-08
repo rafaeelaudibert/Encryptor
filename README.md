@@ -1,4 +1,5 @@
 # :lock: :key: Encryptor
+![Encryptor Logo](/assets/logo.png)
 
 Several encryptors (cryptographic secure or not) available in a REST API
 fashion, using Flask
