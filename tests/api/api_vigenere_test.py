@@ -31,11 +31,9 @@ def test_vigenere_encrypt_invalid_key(client):
     response = client.get(
         "/api/vigenere/encrypt/encryptthis?key=5").get_json()
     assert response["status"] == 400
-    assert "Should be <class 'str'>" in response["content"]
 
 
 def test_vigenere_decrypt_invalid_key(client):
     response = client.get(
         "/api/vigenere/decrypt/EGUSZRfUIKe?key=5").get_json()
     assert response["status"] == 400
-    assert "Should be <class 'str'>" in response["content"]
