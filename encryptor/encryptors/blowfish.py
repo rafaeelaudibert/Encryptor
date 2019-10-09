@@ -56,5 +56,9 @@ class Blowfish:
     def decrypt(data, mode = None):
         data = bytes.fromhex(data)
         decrypted_data = Blowfish._handle_data('decrypt', data, mode)
-        decrypted_data = decrypted_data.decode('utf-8')
+        print ('Data : ', decrypted_data)
+        try:
+            decrypted_data = decrypted_data.decode('utf-8')
+        except UnicodeDecodeError:
+            return str(decrypted_data)
         return decrypted_data
