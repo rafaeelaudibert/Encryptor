@@ -107,8 +107,8 @@ def create_app(test_config=None):
 
     @app.route("/api/rsa/encrypt/<text>")
     def rsa_encrypt(text):
-        n = request.args.get("n", Rsa.Default_N)
-        e = request.args.get("e", Rsa.Default_E)
+        n = request.args.get("n", Rsa.DEFAULT_N)
+        e = request.args.get("e", Rsa.DEFAULT_E)
 
         return jsonify({
             "status": 200,
@@ -117,9 +117,9 @@ def create_app(test_config=None):
 
     @app.route("/api/rsa/decrypt/<text>")
     def rsa_decrypt(text):
-        p = request.args.get("p", Rsa.Default_P)
-        q = request.args.get("q", Rsa.Default_Q)
-        e = request.args.get("e", Rsa.Default_E)
+        p = request.args.get("p", Rsa.DEFAULT_P)
+        q = request.args.get("q", Rsa.DEFAULT_Q)
+        e = request.args.get("e", Rsa.DEFAULT_E)
 
         return jsonify({
             "status": 200,
