@@ -38,3 +38,7 @@ something really nice and beginner friendly.
 ## :busts_in_silhouette: Contributors
 
 - [RafaAudibert](https://github.com/rafaeelaudibert) - Author
+- [Artyko](https://github.com/Artyko) - Code Contributor
+- [Pragyan Mehrotra](https://github.com/pragyanmehrotra) - Code Contributor
+- [NinoCosmic](https://github.com/NinoCosmic) - Code Contributor
+- [Andrea Churchville](https://github.com/AndChurchville) - LogoMaker
