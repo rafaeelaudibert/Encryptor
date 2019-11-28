@@ -1,5 +1,6 @@
 import json
 from os import urandom
+import werkzeug
 
 import blowfish
 
