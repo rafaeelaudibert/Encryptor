@@ -120,6 +120,27 @@ def create_app(test_config=None):
         return jsonify({
             "status": 200,
             "content": Blowfish.decrypt(text, mode)
+
+          
+    @app.route("/api/rsa/encrypt/<text>")
+    def rsa_encrypt(text):
+        n = request.args.get("n", Rsa.DEFAULT_N)
+        e = request.args.get("e", Rsa.DEFAULT_E)
+
+        return jsonify({
+            "status": 200,
+            "content": Rsa.encrypt(text, n, e)
+        })
+
+    @app.route("/api/rsa/decrypt/<text>")
+    def rsa_decrypt(text):
+        p = request.args.get("p", Rsa.DEFAULT_P)
+        q = request.args.get("q", Rsa.DEFAULT_Q)
+        e = request.args.get("e", Rsa.DEFAULT_E)
+
+        return jsonify({
+            "status": 200,
+            "content": Rsa.decrypt(text, p, q, e)
         })
 
     @app.route("/api/error")
