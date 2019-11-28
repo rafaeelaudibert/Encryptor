@@ -120,6 +120,7 @@ def create_app(test_config=None):
         return jsonify({
             "status": 200,
             "content": Blowfish.decrypt(text, mode)
+        })
 
           
     @app.route("/api/rsa/encrypt/<text>")
