@@ -105,6 +105,23 @@ def create_app(test_config=None):
             "content": RailFence.decrypt(text, rail_height)
         })
 
+    @app.route("/api/blowfish/encrypt/<text>")
+    def blowfish_encrypt(text):
+        mode = request.args.get("mode", Blowfish.DEFAULT_MODE)
+        return jsonify({
+            "status": 200,
+            "content": Blowfish.encrypt(text, mode)
+        })
+
+    @app.route("/api/blowfish/decrypt/<text>")
+    def blowfish_decrypt(text):
+        mode = request.args.get("mode", Blowfish.DEFAULT_MODE)
+
+        return jsonify({
+            "status": 200,
+            "content": Blowfish.decrypt(text, mode)
+
+          
     @app.route("/api/rsa/encrypt/<text>")
     def rsa_encrypt(text):
         n = request.args.get("n", Rsa.DEFAULT_N)

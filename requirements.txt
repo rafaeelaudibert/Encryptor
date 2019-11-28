@@ -12,3 +12,4 @@ sentry-sdk[flask]==0.12.2
 pytest-flask==0.10.0
 pytest-mock==1.10.4
 python-dotenv==0.10.3
+blowfish
