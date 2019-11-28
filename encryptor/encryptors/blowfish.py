@@ -9,7 +9,7 @@ config = {
 }
 
 
-class BlowfishException(Exception):
+class BlowfishException(werkzeug.exceptions.BadRequest):
     def __init__(self, message):
         self.message = message
 
