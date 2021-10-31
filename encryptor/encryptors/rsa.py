@@ -1,73 +1,97 @@
+"""
+Encryptor - RSA
+
+https://en.wikipedia.org/wiki/RSA_(cryptosystem)
+"""
+
+from binascii import hexlify
+
 from ..errors.not_allowed_value import NotAllowedValue
 from ..errors.wrong_type_parameter import WrongTypeParameter
 from ..errors.modular_inverse_does_not_exist import ModularInverseDoesNotExist
-from binascii import hexlify,unhexlify
 
 
 class Rsa:
 
-	DEFAULT_E = 65537
-	DEFAULT_P = 296364335885826735335603657657712346243
-	DEFAULT_Q = 261610179866133310725739923400935476237
-	DEFAULT_N = DEFAULT_P*DEFAULT_Q
+    """
+	Class implementing RSA cryptosystem
+	"""
 
-	@staticmethod
-	def encrypt(text: str, n: int = DEFAULT_N, e: int = DEFAULT_E):
-		try:
-			n = Rsa.DEFAULT_N if n is None else int(n)
-		except ValueError:
-			raise WrongTypeParameter("n", int, type(n))
+    DEFAULT_E = 65537
+    DEFAULT_P = 296364335885826735335603657657712346243
+    DEFAULT_Q = 261610179866133310725739923400935476237
+    DEFAULT_N = DEFAULT_P * DEFAULT_Q
 
-		try:
-			e = Rsa.DEFAULT_E if e is None else int(e)
-		except ValueError:
-			raise WrongTypeParameter("e", int, type(e))
+    @staticmethod
+    def encrypt(text: str, input_n: int = DEFAULT_N, input_e: int = DEFAULT_E):
 
-		message = int(hexlify(bytes(text, 'utf-8')), 16)
-		encrypted_message = pow(message, e, n)
-		return hex(encrypted_message)[2:].split('L')[0]
+        """
+        RSA - Encrypt
 
-	@staticmethod
-	def decrypt(text: str, p: int = DEFAULT_P, q: int = DEFAULT_Q, e: int = DEFAULT_E):
-		try:
-			p = Rsa.DEFAULT_P if p is None else int(p)
-		except ValueError:
-			raise WrongTypeParameter("p", int, type(p))
-		
-		try:
-			q = Rsa.DEFAULT_Q if q is None else int(q)
-		except ValueError:
-			raise WrongTypeParameter("q", int, type(q))
+        Call helper functions to encrypt input string
+        """
 
-		
-		try:
-			e = Rsa.DEFAULT_E if e is None else int(e)
-		except ValueError:
-			raise WrongTypeParameter("e", int, type(e))
+        try:
+            input_n = Rsa.DEFAULT_N if input_n is None else int(input_n)
+        except ValueError:
+            raise WrongTypeParameter("input_n", int, type(input_n))
 
-		try:
-			encrypted_message = int(text, 16)
-		except:
-			raise NotAllowedValue
+        try:
+            input_e = Rsa.DEFAULT_E if input_e is None else int(input_e)
+        except ValueError:
+            raise WrongTypeParameter("input_e", int, type(input_e))
 
-		phi = (p-1)*(q-1)
-		d = Rsa.modinv(e, phi)
-		n = p*q
-		decrypted_message = pow(encrypted_message, d, n)
-		return hex(decrypted_message)[2:].split('L')[0]
+        message = int(hexlify(bytes(text, "utf-8")), 16)
+        encrypted_message = pow(message, input_e, input_n)
+        return hex(encrypted_message)[2:].split("L")[0]
 
-	@staticmethod
-	def egcd(a, b):
-		if a == 0:
-			return (b, 0, 1)
-		else:
-			g, y, x = Rsa.egcd(b % a, a)
-			return (g, x - (b//a)*y, y)
+    @staticmethod
+    def decrypt(text: str, input_p: int = DEFAULT_P, input_q: int = DEFAULT_Q, input_e: int = DEFAULT_E):
 
-	@staticmethod
-	def modinv(a, m):
-		g, x, y = Rsa.egcd(a, m)
-		if g != 1:
-			raise ModularInverseDoesNotExist(g, a, m)
-		else:
-			return x % m
+        """
+        RSA - Decrypt
+
+        Call helper functions to decrypt input string
+        """
+
+        try:
+            input_p = Rsa.DEFAULT_P if input_p is None else int(input_p)
+        except ValueError:
+            raise WrongTypeParameter("input_p", int, type(input_p))
+
+        try:
+            input_q = Rsa.DEFAULT_Q if input_q is None else int(input_q)
+        except ValueError:
+            raise WrongTypeParameter("input_q", int, type(input_q))
+
+        try:
+            input_e = Rsa.DEFAULT_E if input_e is None else int(input_e)
+        except ValueError:
+            raise WrongTypeParameter("input_e", int, type(input_e))
+
+        try:
+            encrypted_message = int(text, 16)
+        except:
+            raise NotAllowedValue
+
+        phi = (input_p - 1) * (input_q - 1)
+        delta = Rsa.modinv(input_e, phi)
+        num = input_p * input_q
+        decrypted_message = pow(encrypted_message, delta, num)
+        return hex(decrypted_message)[2:].split("L")[0]
+
+    @staticmethod
+    def egcd(a, b):
+        if a == 0:
+            return (b, 0, 1)
+        else:
+            g, y, x = Rsa.egcd(b % a, a)
+            return (g, x - (b // a) * y, y)
+
+    @staticmethod
+    def modinv(a, m):
+        g, x, y = Rsa.egcd(a, m)
+        if g != 1:
+            raise ModularInverseDoesNotExist(g, a, m)
+        else:
+            return x % m
