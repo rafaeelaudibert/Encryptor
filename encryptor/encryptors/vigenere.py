@@ -46,7 +46,7 @@ class Vigenere:
     @staticmethod
     def decrypt(text: str, key: str = KEY, tabula_recta=None):
         """
-        Viegenere - Decrypt
+        Vigenere - Decrypt
 
         Call helper functions to decrypt input string
         """
