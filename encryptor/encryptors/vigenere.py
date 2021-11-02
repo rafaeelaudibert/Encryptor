@@ -24,7 +24,7 @@ class Vigenere:
     @staticmethod
     def encrypt(text: str, key: str = KEY, tabula_recta=None):
         """
-        Viegenere - Encrypt
+        Vigenere - Encrypt
 
         Call helper functions to encrypt input string
         """
