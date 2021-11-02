@@ -9,7 +9,7 @@ with io.open("README.md", "rt", encoding="utf8") as f:
 
 setup(
     name="encryptor",
-    version=os.environ['PACKAGE_VERSION'],
+    version=os.environ["PACKAGE_VERSION"],
     url="https://rafaeelaudibert/encryptor.py",
     maintainer="Rafa Audibert",
     maintainer_email="rafaeelaudibert@gmail.com",

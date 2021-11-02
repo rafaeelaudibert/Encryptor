@@ -13,3 +13,4 @@ pytest-flask==1.0.0
 pytest-mock==1.10.4
 python-dotenv==0.10.3
 blowfish==0.6.1
+pylint
