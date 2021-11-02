@@ -31,6 +31,7 @@ class Vigenere:
 
         if tabula_recta is None:
             tabula_recta = Vigenere.ALPHABET
+        
         if key.isalpha():
             message_encoded = Vigenere._encode(text)
             key_encoded = Vigenere._encode(key)
