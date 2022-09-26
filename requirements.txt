@@ -3,7 +3,7 @@ click==7.1.2
 contextlib2==0.5.5
 Flask==1.1.2
 itsdangerous==0.24
-Jinja2>=2.10.1
+Jinja2==2.10.1
 MarkupSafe==1.1.1
 Werkzeug==0.16.0
 pytest==6.1.1
