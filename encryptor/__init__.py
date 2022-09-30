@@ -144,6 +144,27 @@ def create_app(test_config=None):
             "content": Rsa.decrypt(text, p, q, e)
         })
 
+    @app.route("/api/aes/encrypt/<text>")
+    def aes_encrypt(text):
+        key = request.args.get("key", Aes.KEY)
+        ciphertext,nonce = Aes.encrypt(text, key)
+
+        return jsonify({
+            "status": 200,
+            "content": {"ciphertext":ciphertext, "nonce":nonce}
+        })
+
+    @app.route("/api/aes/decrypt/<text>")
+    def aes_decrypt(text):
+        key = request.args.get("key", Aes.KEY)
+        nonce = request.args.get("nonce", None)
+
+        return jsonify({
+            "status": 200,
+            "content": Aes.decrypt(text, key, nonce)
+        })
+
+
     @app.route("/api/error")
     def trigger_error():
         return jsonify({"status": 200, "content": "1 / 0 = {}".format(1 / 0)})
