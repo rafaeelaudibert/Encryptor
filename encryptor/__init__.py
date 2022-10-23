@@ -164,6 +164,24 @@ def create_app(test_config=None):
             "content": Aes.decrypt(text, key, nonce)
         })
 
+    @app.route("/api/des/encrypt/<text>")
+    def des_encrypt(text):
+        key = request.args.get("key", Des.KEY)
+        ciphertext = Des.encrypt(text, key)
+
+        return jsonify({
+            "status": 200,
+            "content": {"ciphertext":ciphertext}
+        })
+
+    @app.route("/api/des/decrypt/<text>")
+    def des_decrypt(text):
+        key = request.args.get("key", Des.KEY)
+
+        return jsonify({
+            "status": 200,
+            "content": Des.decrypt(text, key)
+        })
 
     @app.route("/api/error")
     def trigger_error():

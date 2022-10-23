@@ -4,3 +4,4 @@ from .blowfish import *
 from .vigenere import *
 from .rsa import *
 from .aes import *
+from .des import *
