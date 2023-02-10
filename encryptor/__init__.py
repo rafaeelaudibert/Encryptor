@@ -164,6 +164,35 @@ def create_app(test_config=None):
             "content": Aes.decrypt(text, key, nonce)
         })
 
+    @app.route("/api/transposition/encrypt")
+    def transposition_encrypt():
+        key = request.args.get("key")
+        if key:
+            key = int(key)
+        else:
+            key = 0
+        message = request.args.get("text")
+        return jsonify({
+            "status": 200,
+            "content": Transposition.encrypt(key, message)
+        })
+        
+
+    @app.route("/api/transposition/decrypt")
+    def transposition_decrypt():
+        key = int(request.args.get("key",0))
+        key = request.args.get("key")
+        if key:
+            key = int(key)
+        else:
+            key = 0
+        message = request.args.get("text")
+        message = request.args.get("text")
+        return jsonify({
+            "status": 200,
+            "content": Transposition.decrypt(key, message)
+        })
+
 
     @app.route("/api/error")
     def trigger_error():
